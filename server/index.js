@@ -19,6 +19,35 @@ const limitResults = R.compose(
   // R.take(20),
   R.prop('data')
 )
+// Get filenames of particular filetype
+// ===
+function getFilenamesFromDir(startPath,filter){
+
+  let res = []
+
+  if (!fs.existsSync(startPath)){
+    console.log("no dir ",startPath);
+    return res;
+  }
+
+  const files = fs.readdirSync(startPath);
+
+  for(let i=0;i<files.length;i++){
+    let filename=path.join(startPath,files[i]);
+    let stat = fs.lstatSync(filename);
+    if (stat.isDirectory()){
+      res = R.union(res, getFilenamesFromDir(filename, filter)); //recurse
+    }
+
+    else if (filename.indexOf(filter)>=0) {
+      console.log(filename)
+      res.push(filename)
+    }
+
+  }
+  return res
+}
+
 
 // Helper for cached api requests
 // ===
@@ -48,9 +77,10 @@ app.use(function(req, res, next) {
 
 // Apis
 // ===
-// app.get('', function (req, res) {
-//   cachedApiRequest(res, '')
-// });
+app.get('/getMovementData', function (req, res) {
+  // cachedApiRequest(res, '')
+  res.send(getFilenamesFromDir('fixtures', '.bvh'))
+});
 
 
 // Priority serve any static files.

@@ -1,0 +1,119 @@
+{
+  "parser": "babel-eslint",
+  "plugins": ["react", "flowtype", "prettier"],
+  "extends": [
+    "airbnb",
+    "plugin:flowtype/recommended",
+    "prettier",
+    "prettier/flowtype",
+    "prettier/react"
+  ],
+  "env": {
+    "node": true,
+    "browser": true,
+  },
+  "rules": {
+    // Broken rules
+    // ---
+    "jsx-a11y/href-no-hash": "off",
+
+    // Flow
+    // ---
+    "flowtype/no-weak-types": ["warn", {
+      "Function": false
+    }], // no Function, Object
+    "flowtype/require-valid-file-annotation": ["warn", "always"],
+
+    // Prettier
+    // ---
+    "prettier/prettier": "error",
+
+    // 10/2017 Update
+    // ---
+    "radix": "warn",
+    "class-methods-use-this": "warn",
+    "prefer-const": "warn",
+    "no-restricted-properties": "warn",
+    "one-var": "warn",
+    "no-plusplus": "warn",
+    "no-template-curly-in-string": "warn",
+    "no-bitwise": "warn",
+    "no-await-in-loop": "warn",
+    "no-useless-escape": "warn",
+    "no-restricted-syntax": "warn",
+    "no-return-assign": "warn",
+    "no-return-await": "warn",
+    "no-multi-assign": "warn",
+
+    "react/prop-types": "warn",
+    "react/no-string-refs": "warn",
+    "react/no-multi-comp": "warn",
+    "react/no-children-prop": "warn",
+    "react/forbid-prop-types": "warn",
+    "react/style-prop-object": "warn",
+    "react/no-array-index-key": "warn",
+    "react/no-unused-prop-types": "warn",
+    "react/no-unescaped-entities": "warn",
+    "react/require-default-props": "warn",
+
+    "import/first": "warn",
+    "import/extensions": "warn",
+    "import/imports-first": "warn",
+    "import/prefer-default-export": "warn",
+
+    "jsx-a11y/alt-text": "warn",
+    "jsx-a11y/no-autofocus": "warn",
+    "jsx-a11y/iframe-has-title": "warn",
+    "jsx-a11y/no-redundant-roles": "warn",
+    "jsx-a11y/anchor-has-content": "warn",
+    "jsx-a11y/tabindex-no-positive": "warn",
+    "jsx-a11y/role-has-required-aria-props": "warn",
+    "jsx-a11y/no-static-element-interactions": "warn",
+    "jsx-a11y/no-noninteractive-element-interactions": "warn",
+
+    "flowtype/no-types-missing-file-annotation": "warn",
+
+    // General import paths
+    // ---
+    "import/no-restricted-paths": ["error", {
+      "zones": [
+        { "target": "./app", "from": "./data" },
+        { "target": "./app", "from": "./server" },
+        { "target": "./common", "from": "./data" },
+        { "target": "./common", "from": "./server" },
+        { "target": "./src", "from": "./data" },
+        { "target": "./src", "from": "./server" },
+        { "target": "./server", "from": "./data" }
+      ]
+    }],
+
+    // Kiwi style
+    // ---
+    "quote-props": "off", // used for api inputs
+    "dot-notation": ["off"], // we use bracket notation for external inputs (API, url params, ...)
+    "react/jsx-filename-extension": ["error", { "extensions": [".js"] }],
+    "new-cap": "off", // Because Immutable.js
+    "no-underscore-dangle": "off", // __LOG
+    // Strajk & Michael don't care
+    "jsx-a11y/label-has-for": "off", // we put inputs into labels
+
+    // Fix gradually
+    // ---
+    "no-unused-expressions": "warn",
+    "no-prototype-builtins": "warn",
+    "no-unused-vars": "warn",
+    "default-case": "warn",
+    "func-names": "warn",
+    "no-mixed-operators": "warn",
+
+    // Fix automatically someday
+    // ---
+    "import/no-duplicates": "warn",
+    "react/sort-comp": "warn",
+    "react/no-find-dom-node": "warn",
+
+    // Codemod
+    "react/prefer-stateless-function": "warn",
+    "react/prefer-es6-class": "warn",
+  }
+}

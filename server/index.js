@@ -16,7 +16,7 @@ app.listen(PORT, function () {
 // Formatters
 // ===
 const limitResults = R.compose(
-  R.take(40),
+  R.take(20),
   // R.prop('data')
 )
 // Get filenames of particular filetype

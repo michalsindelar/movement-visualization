@@ -1,6 +1,6 @@
-export const ACTION = "ACTION"
+export const SET_DATA_FILENAMES = "SET_DATA_FILENAMES"
 
-export const action = loading => ({
-  type: ACTION,
+export const setDataFilenames = loading => ({
+  type: SET_DATA_FILENAMES,
   payload: { data: loading },
 })

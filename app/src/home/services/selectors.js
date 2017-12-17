@@ -1,6 +1,6 @@
 import * as R from "ramda"
 import { createSelector } from "reselect"
 
-import { getFoo } from "./reducer"
+import { getDataFilenames } from "./reducer"
 
-export const getFooCombinedSelector = createSelector(getFoo, R.identity)
+export const getFooCombinedSelector = createSelector(getDataFilenames, R.identity)

@@ -40,7 +40,6 @@ function getFilenamesFromDir(startPath,filter){
     }
 
     else if (filename.indexOf(filter)>=0) {
-      console.log(filename)
       res.push(filename)
     }
 
@@ -51,18 +50,23 @@ function getFilenamesFromDir(startPath,filter){
 
 // Helper for cached api requests
 // ===
-const cachedApiRequest = (res, key) =>  {
+const cachedApiRequest = (res, key, filenames) =>  {
   res.set('Content-Type', 'application/json');
   let data
 
+  let cachedArray = []
   try {
     data = ApisCache.get(key, true);
   } catch (e) {
     // Not cached / needs update
-    ApisCache.set(key, fs.readFileSync(path.resolve(__dirname, `../fixtures/${key}.json`)));
+    filenames.forEach(filename => {
+      cachedArray.push(fs.readFileSync(path.resolve(filename)))
+    })
+    console.log(cachedArray)
+    ApisCache.set(key, cachedArray);
     data = ApisCache.get(key)
   } finally {
-    res.send(limitResults(JSON.parse(data)))
+    res.send(limitResults(data))
   }
 }
 
@@ -77,10 +81,15 @@ app.use(function(req, res, next) {
 
 // Apis
 // ===
-app.get('/getMovementData', function (req, res) {
-  // cachedApiRequest(res, '')
+app.get('/getMovementFilenames', function (req, res) {
   res.send(getFilenamesFromDir('fixtures', '.bvh'))
 });
+
+// app.get('/getMovementData', function (req, res) {
+//   const filenames = [getFilenamesFromDir('fixtures', '.bvh')[0]]
+//   console.log(filenames)
+//   cachedApiRequest(res, "movementData", filenames)
+// });
 
 
 // Priority serve any static files.

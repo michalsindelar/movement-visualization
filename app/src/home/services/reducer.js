@@ -1,21 +1,21 @@
 import * as R from "ramda"
 
-import { ACTION } from "./actions"
+import { SET_DATA_FILENAMES } from "./actions"
 
 const DEFAULT_STATE = {
-  foo: null,
+  dataFilenames: [],
 }
 
 const reducer = (state = DEFAULT_STATE, action) => {
   switch (action.type) {
-    case ACTION:
-      return R.assoc("foo", action.payload.data, state)
+    case SET_DATA_FILENAMES:
+      return R.assoc("dataFilenames", action.payload.data, state)
 
     default:
       return state
   }
 }
 
-export const getFoo = R.prop("foo")
+export const getDataFilenames = R.prop("dataFilenames")
 
 export default reducer

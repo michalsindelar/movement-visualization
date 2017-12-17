@@ -79,10 +79,10 @@ class VisualizationEngine {
       window.top.loaded();
   };
 
-  run() {
+  run(filename) {
     this.fig = window.MovaViz('BEA')
       .debug(true)
-      .data('https://www.sfu.ca/~oalemi/data/KAREN_BEAS_001_original.bvh','bvh', this.dataLoaded)
+      .data(filename,'bvh', this.dataLoaded)
       .container(this.svg);
 
     this.fig.addDrawMethod(this.cruveBoneFcn, 'bone-positions', [this.startFrame,this.endFrame], 1);

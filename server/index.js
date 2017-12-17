@@ -16,7 +16,7 @@ app.listen(PORT, function () {
 // Formatters
 // ===
 const limitResults = R.compose(
-  R.take(1),
+  R.take(40),
   // R.prop('data')
 )
 // Get filenames of particular filetype
@@ -62,7 +62,6 @@ const cachedApiRequest = (res, key, filenames) =>  {
     filenames.forEach(filename => {
       cachedArray.push(fs.readFileSync(path.resolve(filename)))
     })
-    console.log(cachedArray)
     ApisCache.set(key, cachedArray);
     data = ApisCache.get(key)
   } finally {
@@ -85,16 +84,13 @@ app.get('/getMovementFilenames', function (req, res) {
   res.send(limitResults(getFilenamesFromDir('fixtures', '.bvh')))
 });
 
-// app.get('/getMovementData', function (req, res) {
-//   const filenames = [getFilenamesFromDir('fixtures', '.bvh')[0]]
-//   console.log(filenames)
-//   cachedApiRequest(res, "movementData", filenames)
-// });
 
+app.get('/getFile', function(req, res) {
+  res.send(fs.readFileSync(path.resolve(__dirname, `../${req.query.filename}`)))
+})
 
 // Priority serve any static files.
 app.use(express.static(path.resolve(__dirname, '../app/build')));
-app.use(express.static(path.resolve(__dirname, '../fixtures')));
 
 
 // All remaining requests return the React app, so it can handle routing.

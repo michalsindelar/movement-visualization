@@ -8,7 +8,11 @@ class Visualization extends Component {
     const { filename, classname } = this.props
 
     const vis = new VisualizationEngine(`.${classname}`)
-    vis.run()
+
+    // demo
+    // vis.run("https://www.sfu.ca/~oalemi/data/KAREN_BEAS_001_original.bvh")
+
+    vis.run(filename)
   }
 
   render() {

@@ -1,11 +1,12 @@
 // @flow
 import React, { Component } from "react"
-import * as R from "ramda"
 import { connect } from "react-redux"
 
 import "./App.css"
 import {loadDataFilenames} from "./services/actionsCreators"
 import {getDataFilenames} from "./services/reducer"
+import Visualization from "./components/Visualization"
+import appendScript from "./tools/appendScript"
 
 class Home extends Component {
 
@@ -19,7 +20,7 @@ class Home extends Component {
 
     return (
       <div className="Home">
-        {dataFilenames.map(R.identity)}
+        {["https://www.sfu.ca/~oalemi/data/KAREN_BEAS_001_original.bvh"].map((filename, i) => <Visualization filename={filename} key={i} classname={`file-${i}`} />)}
       </div>
     )
   }

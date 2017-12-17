@@ -89,9 +89,9 @@ You can find the most recent version of this guide [here](https://github.com/fac
 - [Troubleshooting](#troubleshooting)
   - [`npm start` doesn’t detect changes](#npm-start-doesnt-detect-changes)
   - [`npm test` hangs on macOS Sierra](#npm-test-hangs-on-macos-sierra)
-  - [`npm run build` exits too early](#npm-run-build-exits-too-early)
-  - [`npm run build` fails on Heroku](#npm-run-build-fails-on-heroku)
-  - [`npm run build` fails to minify](#npm-run-build-fails-to-minify)
+  - [`npm drawVisualization build` exits too early](#npm-run-build-exits-too-early)
+  - [`npm drawVisualization build` fails on Heroku](#npm-run-build-fails-on-heroku)
+  - [`npm drawVisualization build` fails to minify](#npm-run-build-fails-to-minify)
   - [Moment.js locales are missing](#momentjs-locales-are-missing)
 - [Something Missing?](#something-missing)
 
@@ -170,7 +170,7 @@ You will also see any lint errors in the console.
 Launches the test runner in the interactive watch mode.<br>
 See the section about [running tests](#running-tests) for more information.
 
-### `npm run build`
+### `npm drawVisualization build`
 
 Builds the app for production to the `build` folder.<br>
 It correctly bundles React in production mode and optimizes the build for the best performance.
@@ -180,7 +180,7 @@ Your app is ready to be deployed!
 
 See the section about [deployment](#deployment) for more information.
 
-### `npm run eject`
+### `npm drawVisualization eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
@@ -558,7 +558,7 @@ Then in `package.json`, add the following lines to `scripts`:
 
 >Note: To use a different preprocessor, replace `build-css` and `watch-css` commands according to your preprocessor’s documentation.
 
-Now you can rename `src/Home.css` to `src/Home.scss` and run `npm run watch-css`. The watcher will find every Sass file in `src` subdirectories, and create a corresponding CSS file next to it, in our case overwriting `src/Home.css`. Since `src/Home.js` still imports `src/Home.css`, the styles become a part of your application. You can now edit `src/Home.scss`, and `src/Home.css` will be regenerated.
+Now you can rename `src/Home.css` to `src/Home.scss` and run `npm drawVisualization watch-css`. The watcher will find every Sass file in `src` subdirectories, and create a corresponding CSS file next to it, in our case overwriting `src/Home.css`. Since `src/Home.js` still imports `src/Home.css`, the styles become a part of your application. You can now edit `src/Home.scss`, and `src/Home.css` will be regenerated.
 
 To share variables between Sass files, you can use Sass imports. For example, `src/Home.scss` and other component style files could include `@import "./shared.scss";` with variable definitions.
 
@@ -578,7 +578,7 @@ This will allow you to do imports like
 
 At this point you might want to remove all CSS files from the source control, and add `src/**/*.css` to your `.gitignore` file. It is generally a good practice to keep the build products outside of the source control.
 
-As a final step, you may find it convenient to run `watch-css` automatically with `npm start`, and run `build-css` as a part of `npm run build`. You can use the `&&` operator to execute two scripts sequentially. However, there is no cross-platform way to run two scripts in parallel, so we will install a package for this:
+As a final step, you may find it convenient to run `watch-css` automatically with `npm start`, and run `build-css` as a part of `npm drawVisualization build`. You can use the `&&` operator to execute two scripts sequentially. However, there is no cross-platform way to run two scripts in parallel, so we will install a package for this:
 
 ```sh
 npm install --save npm-run-all
@@ -607,7 +607,7 @@ Then we can change `start` and `build` scripts to include the CSS preprocessor c
    }
 ```
 
-Now running `npm start` and `npm run build` also builds Sass files.
+Now running `npm start` and `npm drawVisualization build` also builds Sass files.
 
 **Why `node-sass-chokidar`?**
 
@@ -695,7 +695,7 @@ Inside `index.html`, you can use it like this:
 
 Only files inside the `public` folder will be accessible by `%PUBLIC_URL%` prefix. If you need to use a file from `src` or `node_modules`, you’ll have to copy it there to explicitly specify your intention to make this file a part of the build.
 
-When you run `npm run build`, Create React App will substitute `%PUBLIC_URL%` with a correct absolute path so your project works even if you use client-side routing or host it at a non-root URL.
+When you run `npm drawVisualization build`, Create React App will substitute `%PUBLIC_URL%` with a correct absolute path so your project works even if you use client-side routing or host it at a non-root URL.
 
 In JavaScript code, you can use `process.env.PUBLIC_URL` for similar purposes:
 
@@ -794,10 +794,10 @@ To add Flow to a Create React App project, follow these steps:
 
 1. Run `npm install --save flow-bin` (or `yarn add flow-bin`).
 2. Add `"flow": "flow"` to the `scripts` section of your `package.json`.
-3. Run `npm run flow init` (or `yarn flow init`) to create a [`.flowconfig` file](https://flowtype.org/docs/advanced-configuration.html) in the root directory.
+3. Run `npm drawVisualization flow init` (or `yarn flow init`) to create a [`.flowconfig` file](https://flowtype.org/docs/advanced-configuration.html) in the root directory.
 4. Add `// @flow` to any files you want to type check (for example, to `src/Home.js`).
 
-Now you can run `npm run flow` (or `yarn flow`) to check the files for type errors.
+Now you can run `npm drawVisualization flow` (or `yarn flow`) to check the files for type errors.
 You can optionally use an IDE like [Nuclide](https://nuclide.io/docs/languages/flow/) for a better integrated experience.
 In the future we plan to integrate it into Create React App even more closely.
 
@@ -818,7 +818,7 @@ default you will have `NODE_ENV` defined for you, and any other environment vari
 These environment variables will be defined for you on `process.env`. For example, having an environment
 variable named `REACT_APP_SECRET_CODE` will be exposed in your JS as `process.env.REACT_APP_SECRET_CODE`.
 
-There is also a special built-in environment variable called `NODE_ENV`. You can read it from `process.env.NODE_ENV`. When you run `npm start`, it is always equal to `'development'`, when you run `npm test` it is always equal to `'test'`, and when you run `npm run build` to make a production bundle, it is always equal to `'production'`. **You cannot override `NODE_ENV` manually.** This prevents developers from accidentally deploying a slow development build to production.
+There is also a special built-in environment variable called `NODE_ENV`. You can read it from `process.env.NODE_ENV`. When you run `npm start`, it is always equal to `'development'`, when you run `npm test` it is always equal to `'test'`, and when you run `npm drawVisualization build` to make a production bundle, it is always equal to `'production'`. **You cannot override `NODE_ENV` manually.** This prevents developers from accidentally deploying a slow development build to production.
 
 These environment variables can be useful for displaying information conditionally based on where the project is
 deployed or consuming sensitive data that lives outside of version control.
@@ -864,7 +864,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 ```
 
-When you compile the app with `npm run build`, the minification step will strip out this condition, and the resulting bundle will be smaller.
+When you compile the app with `npm drawVisualization build`, the minification step will strip out this condition, and the resulting bundle will be smaller.
 
 ### Referencing Environment Variables in the HTML
 
@@ -924,7 +924,7 @@ REACT_APP_SECRET_CODE=abcdef
 Files on the left have more priority than files on the right:
 
 * `npm start`: `.env.development.local`, `.env.development`, `.env.local`, `.env`
-* `npm run build`: `.env.production.local`, `.env.production`, `.env.local`, `.env`
+* `npm drawVisualization build`: `.env.production.local`, `.env.production`, `.env.local`, `.env`
 * `npm test`: `.env.test.local`, `.env.test`, `.env` (note `.env.local` is missing)
 
 These variables will act as the defaults if the machine does not explicitly set them.<br>
@@ -1427,7 +1427,7 @@ Example package.json:
 
 By default `npm test` runs the watcher with interactive CLI. However, you can force it to run tests once and finish the process by setting an environment variable called `CI`.
 
-When creating a build of your application with `npm run build` linter warnings are not checked by default. Like `npm test`, you can force the build to perform a linter warning check by setting the environment variable `CI`. If any warnings are encountered then the build fails.
+When creating a build of your application with `npm drawVisualization build` linter warnings are not checked by default. Like `npm test`, you can force the build to perform a linter warning check by setting the environment variable `CI`. If any warnings are encountered then the build fails.
 
 Popular CI servers already set the environment variable `CI` by default but you can do this yourself too:
 
@@ -1658,13 +1658,13 @@ in all web browsers. Service worker registration [won't be attempted](src/regist
 on browsers that lack support.
 
 1. The service worker is only enabled in the [production environment](#deployment),
-e.g. the output of `npm run build`. It's recommended that you do not enable an
+e.g. the output of `npm drawVisualization build`. It's recommended that you do not enable an
 offline-first service worker in a development environment, as it can lead to
 frustration when previously cached assets are used and do not include the latest
 changes you've made locally.
 
 1. If you *need* to test your offline-first service worker locally, build
-the application (using `npm run build`) and run a simple http server from your
+the application (using `npm drawVisualization build`) and run a simple http server from your
 build directory. After running the build script, `create-react-app` will give
 instructions for one way to test your production build locally and the [deployment instructions](#deployment) have
 instructions for using other methods. *Be sure to always use an
@@ -1753,7 +1753,7 @@ npm run analyze
 
 ## Deployment
 
-`npm run build` creates a `build` directory with a production build of your app. Set up your favourite HTTP server so that a visitor to your site is served `index.html`, and requests to static paths like `/static/js/main.<hash>.js` are served with the contents of the `/static/js/main.<hash>.js` file.
+`npm drawVisualization build` creates a `build` directory with a production build of your app. Set up your favourite HTTP server so that a visitor to your site is served `index.html`, and requests to static paths like `/static/js/main.<hash>.js` are served with the contents of the `/static/js/main.<hash>.js` file.
 
 ### Static Server
 
@@ -1822,7 +1822,7 @@ If you’re using [Apache HTTP Server](https://httpd.apache.org/), you need to c
     RewriteRule ^ index.html [QSA,L]
 ```
 
-It will get copied to the `build` folder when you run `npm run build`. 
+It will get copied to the `build` folder when you run `npm drawVisualization build`.
 
 If you’re using [Apache Tomcat](http://tomcat.apache.org/), you need to follow [this Stack Overflow answer](https://stackoverflow.com/a/41249464/4878474).
 
@@ -1920,7 +1920,7 @@ Then run the `firebase init` command from your project’s root. You need to cho
     ✔  Firebase initialization complete!
 ```
 
-Now, after you create a production build with `npm run build`, you can deploy it by running `firebase deploy`.
+Now, after you create a production build with `npm drawVisualization build`, you can deploy it by running `firebase deploy`.
 
 ```sh
     === Deploying to 'example-app-fd690'...
@@ -1959,7 +1959,7 @@ Create React App uses the `homepage` field to determine the root URL in the buil
 
 #### Step 2: Install `gh-pages` and add `deploy` to `scripts` in `package.json`
 
-Now, whenever you run `npm run build`, you will see a cheat sheet with instructions on how to deploy to GitHub Pages.
+Now, whenever you run `npm drawVisualization build`, you will see a cheat sheet with instructions on how to deploy to GitHub Pages.
 
 To publish it at [https://myusername.github.io/my-app](https://myusername.github.io/my-app), run:
 
@@ -1985,7 +1985,7 @@ Add the following scripts in your `package.json`:
 
 The `predeploy` script will run automatically before `deploy` is run.
 
-#### Step 3: Deploy the site by running `npm run deploy`
+#### Step 3: Deploy the site by running `npm drawVisualization deploy`
 
 Then run:
 
@@ -2017,7 +2017,7 @@ You can find instructions in [Deploying React with Zero Configuration](https://b
 
 #### Resolving Heroku Deployment Errors
 
-Sometimes `npm run build` works locally but fails during deploy via Heroku. Following are the most common cases.
+Sometimes `npm drawVisualization build` works locally but fails during deploy via Heroku. Following are the most common cases.
 
 ##### "Module not found: Error: Cannot resolve 'file' or 'directory'"
 
@@ -2083,7 +2083,7 @@ Now offers a zero-configuration single-command deployment. You can use `now` to 
 
 1. Install the `now` command-line tool either via the recommended [desktop tool](https://zeit.co/download) or via node with `npm install -g now`.
 
-2. Build your app by running `npm run build`.
+2. Build your app by running `npm drawVisualization build`.
 
 3. Move into the build directory by running `cd build`.
 
@@ -2169,15 +2169,15 @@ If this still doesn’t help, try running `launchctl unload -F ~/Library/LaunchA
 
 There are also reports that *uninstalling* Watchman fixes the issue. So if nothing else helps, remove it from your system and try again.
 
-### `npm run build` exits too early
+### `npm drawVisualization build` exits too early
 
-It is reported that `npm run build` can fail on machines with limited memory and no swap space, which is common in cloud environments. Even with small projects this command can increase RAM usage in your system by hundreds of megabytes, so if you have less than 1 GB of available memory your build is likely to fail with the following message:
+It is reported that `npm drawVisualization build` can fail on machines with limited memory and no swap space, which is common in cloud environments. Even with small projects this command can increase RAM usage in your system by hundreds of megabytes, so if you have less than 1 GB of available memory your build is likely to fail with the following message:
 
 >  The build failed because the process exited too early. This probably means the system ran out of memory or someone called `kill -9` on the process.
 
 If you are completely sure that you didn't terminate the process, consider [adding some swap space](https://www.digitalocean.com/community/tutorials/how-to-add-swap-on-ubuntu-14-04) to the machine you’re building on, or build the project locally.
 
-### `npm run build` fails on Heroku
+### `npm drawVisualization build` fails on Heroku
 
 This may be a problem with case sensitive filenames.
 Please refer to [this section](#resolving-heroku-deployment-errors).
@@ -2208,7 +2208,7 @@ moment.locale('fr');
 
 This will only work for locales that have been explicitly imported before.
 
-### `npm run build` fails to minify
+### `npm drawVisualization build` fails to minify
 
 Some third-party packages don't compile their code to ES5 before publishing to npm. This often causes problems in the ecosystem because neither browsers (except for most modern versions) nor some tools currently support all ES6 features. We recommend to publish code on npm as ES5 at least for a few more years.
 

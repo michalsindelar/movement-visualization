@@ -16,8 +16,8 @@ app.listen(PORT, function () {
 // Formatters
 // ===
 const limitResults = R.compose(
-  // R.take(20),
-  R.prop('data')
+  R.take(1),
+  // R.prop('data')
 )
 // Get filenames of particular filetype
 // ===
@@ -82,7 +82,7 @@ app.use(function(req, res, next) {
 // Apis
 // ===
 app.get('/getMovementFilenames', function (req, res) {
-  res.send(getFilenamesFromDir('fixtures', '.bvh'))
+  res.send(limitResults(getFilenamesFromDir('fixtures', '.bvh')))
 });
 
 // app.get('/getMovementData', function (req, res) {
@@ -94,6 +94,7 @@ app.get('/getMovementFilenames', function (req, res) {
 
 // Priority serve any static files.
 app.use(express.static(path.resolve(__dirname, '../app/build')));
+app.use(express.static(path.resolve(__dirname, '../fixtures')));
 
 
 // All remaining requests return the React app, so it can handle routing.

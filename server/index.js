@@ -21,7 +21,7 @@ const limitResults = R.compose(
 )
 // Get filenames of particular filetype
 // ===
-function getFilenamesFromDir(startPath,filter){
+function getFilenamesFromDir(startPath,filter) {
 
   let res = []
 

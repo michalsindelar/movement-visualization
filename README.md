@@ -1,4 +1,8 @@
-# heroku-react-redux-express-boilerplate
+# Movement visualization
 
-Ready for development without any additional settings.
+Live: https://movement-visualization.herokuapp.com/
 
+Stack for various human movement visualization.
+
+
+![Preview of app](doc/preview.png)

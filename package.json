@@ -8,7 +8,7 @@
   "scripts": {
     "start": "node server",
     "startDevelopment": "node server & npm start --prefix app/",
-    "heroku-postbuild": "cd app/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
+    "heroku-postbuild": "cd app/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build && cd .."
   },
   "cacheDirectories": [
     "node_modules",

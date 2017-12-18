@@ -15,10 +15,8 @@ app.listen(PORT, function () {
 
 // Formatters
 // ===
-const limitResults = R.compose(
-  R.take(20),
-  // R.prop('data')
-)
+const limitResults = R.take(20)
+
 // Get filenames of particular filetype
 // ===
 function getFilenamesFromDir(startPath,filter) {
